@@ -1,6 +1,6 @@
-import data
+import datadb
 from geopy import distance
-
+import data
 #X is a vector of all the students and with have the class asignment as data
 #Calculate f1(X) - Average assigments per class
 def f1(X):

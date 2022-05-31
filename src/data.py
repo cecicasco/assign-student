@@ -1,30 +1,42 @@
-# data of Problem Assign Studen
-import psycopg2
-
-
 def init():
-    global  C, P, E, CLASS_SIZE, PERSON_SIZE, ESTABLISMENT_SIZE, N_OBJ, N_CONSTR
+    global C, P, E, CLASS_SIZE, PERSON_SIZE, ESTABLISMENT_SIZE, N_OBJ, N_CONSTR
+    #Class
+    C = [
+        [1,1,1,1,1,3],
+        [1,1,1,2,2,3],
+        [1,2,1,3,3,3],
+        [1,2,1,1,1,3],
+        [1,2,1,2,2,3],
+        [1,1,1,3,3,3]
+    ]
 
-    # Class
-    conn = psycopg2.connect("dbname=postgres user=postgres password=postgres port=5432")
-    cur = conn.cursor()
+    #Students
+    P=[
+        [1,3,4,1],
+        [2,0,9,1],
+        [3,4,3,1],
+        [4,0,4,1],
+        [5,2,6,1],
+        [6,2,8,1],
+        [7,9,1,1],
+        [8,10,5,1],
+        [9,1,10,1],
+        [10,0,6,1],
+        [11,3,3,1],
+        [12,2,6,1],
+        [13,3,4,1],
+        [14,8,9,1],
+        [15,7,3,1],
+        [16,5,4,1]
 
-    C = []
-    cur.execute("select * from tesis.vm_cursos ")
-    for row in cur:
-        C.append([row[0], row[1], row[2], row[3], row[4], row[5]])
+    ]
 
-    # Persons
-    P = []
-    cur.execute("select * from tesis.vm_personas order by 1")
-    for row in cur:
-        P.append([row[0], row[1], row[2], row[3]])
-
-    # Establishment
-    E = []
-    cur.execute("select * from tesis.vm_establecimientos order by 1")
-    for row in cur:
-        E.append([row[0], row[1], row[2], row[3], row[4], row[5]])
+    #Establishment
+    E=[
+        [1,1,5,8,1,15],
+        [2,3,7,15,3,1],
+        [3,9,2,9,11,62]
+    ]
 
     # Configure size
     CLASS_SIZE = len(C)
@@ -35,6 +47,3 @@ def init():
     print(ESTABLISMENT_SIZE)
     N_OBJ = 3
     N_CONSTR = 2
-
-    cur.close()
-    conn.close()

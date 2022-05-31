@@ -8,6 +8,7 @@ from pymoo.core.population import Population
 from pymoo.factory import get_sampling
 from multiprocessing import Process, Manager
 from problem import ADEEProblem,AEEEFeacible,generate_ind
+import data
 
 if __name__ == '__main__':
     mananger = Manager()
@@ -47,7 +48,7 @@ if __name__ == '__main__':
     algorithm = NSGA2(pop_size=100,sampling=get_sampling('int_random'),
                 crossover=get_crossover("int_exp"),
                 mutation=get_mutation("int_pm"),
-             #   repair=AEEEFeacible(),
+                repair=AEEEFeacible(),
                 eliminate_duplicates=True)
 
     #Optimize
@@ -69,11 +70,13 @@ if __name__ == '__main__':
     print('Time:', res.exec_time)
 
 
-    print("Best solution found:" % res.X)
-    print("Function value: %s" % res.F)
-    print("Constraint violation: %s" % res.CV)
+    print("Best solution found: {0}'".format(res.X) )
+    print("Function value: {0}'".format(res.F))
+    print("Constraint violation: {0}'" .format(res.CV))
 
     pool.close()
+
+
 
     plot = Scatter()
     plot.add(problem.pareto_front(), plot_type="line", color="black", alpha=0.7)
