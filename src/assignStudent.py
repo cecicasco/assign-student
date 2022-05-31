@@ -8,7 +8,7 @@ from pymoo.core.population import Population
 from pymoo.factory import get_sampling
 from multiprocessing import Process, Manager
 from problem import ADEEProblem,AEEEFeacible,generate_ind
-import data
+import datadb as data
 
 if __name__ == '__main__':
     mananger = Manager()

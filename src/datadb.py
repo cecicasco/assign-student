@@ -6,7 +6,7 @@ def init():
     global  C, P, E, CLASS_SIZE, PERSON_SIZE, ESTABLISMENT_SIZE, N_OBJ, N_CONSTR
 
     # Class
-    conn = psycopg2.connect("host=192.168.0.116, dbname=postgres user=postgres password=postgres port=5432")
+    conn = psycopg2.connect("host=192.168.0.121, dbname=postgres user=postgres password=postgres port=5432")
     cur = conn.cursor()
 
     C = []
