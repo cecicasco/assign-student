@@ -62,7 +62,6 @@ class AEEEFeacible(Repair):
             for i in range(len(class_assigments)):
                 classes.append({"id":i, "ocupation":class_assigments[i]})
 
-            print(len(classes))
             #searh over the students with not assignments
             for j in range(len(z)):
                 if len(classes) == 0 :

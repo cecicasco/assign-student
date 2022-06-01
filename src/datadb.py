@@ -5,32 +5,29 @@ import psycopg2
 def init():
     global  C, P, E, CLASS_SIZE, PERSON_SIZE, ESTABLISMENT_SIZE, N_OBJ, N_CONSTR, HOST, GRADE, ITERATION
     GRADE = 1
-    ITERATION = 4
+    ITERATION = 1
 
-    HOST = '192.168.0.121'
+    HOST = '192.168.0.110'
 
     # Class
     conn = psycopg2.connect("host=" + HOST +", dbname=postgres user=postgres password=postgres port=5432")
     cur = conn.cursor()
 
     C = []
-    cur.execute("select grado, turno, seccion, institucion, (dense_rank() over (order by establecimiento)-1), capacidad "
-                " from tesis.vm_cursos cur "
+    cur.execute("select grado, turno, seccion, institucion, (dense_rank() over (order by codigo_establecimiento)-1) as establecimiento, capacidad from tesis_prd.clase"
                 " where grado = " + str(GRADE))
     for row in cur:
         C.append([row[0], row[1], row[2], row[3], row[4], row[5]])
 
     # Persons
     P = []
-    cur.execute("select * from tesis.vm_personas where grado= " + str(GRADE) + " order by 1")
+    cur.execute("select estudiante, latitud, longitud, grado from tesis_prd.persona where grado = " + str(GRADE) + " order by 1")
     for row in cur:
         P.append([row[0], row[1], row[2], row[3]])
 
     # Establishment
     E = []
-    cur.execute("select * from tesis.vm_establecimientos"
-                " where id in (select establecimiento::numeric from tesis.vm_cursos where grado = " + str(GRADE) + ")"
-                "    order by 1")
+    cur.execute("select codigo, latitud, longitus, pri_aulas, pri_sanitarios, pri_otros_espacios from tesis_prd.establecimiento order by 1")
     for row in cur:
         E.append([row[0], row[1], row[2], row[3], row[4], row[5]])
 
