@@ -9,10 +9,12 @@ from pymoo.factory import get_sampling
 from multiprocessing import Process, Manager
 from problem import ADEEProblem,AEEEFeacible,generate_ind
 import datadb as data
+import psycopg2
 
 if __name__ == '__main__':
     mananger = Manager()
     q = mananger.Queue()
+
     
     #Init population on 10 group
     process=[]
@@ -69,14 +71,25 @@ if __name__ == '__main__':
 
     print('Time:', res.exec_time)
 
+    # Class
+    conn = psycopg2.connect("host=" + data.HOST + ", dbname=postgres user=postgres password=postgres port=5432")
+    cur = conn.cursor()
+    sql = "insert into tesis.resultados_py (fo1, fo2, fo3, grado, iteracion) values (%s,%s,%s,%s,%s)"
+
 
     print("Best solution found: {0}'".format(res.X) )
     print("Function value: {0}'".format(res.F))
     print("Constraint violation: {0}'" .format(res.CV))
 
+    for i in res.F:
+        cur.execute(sql, (i[0], i[1],i[2], data.GRADE, data.ITERATION))
+        conn.commit()
+
+
+    cur.close()
+    conn.close()
+
     pool.close()
-
-
 
     plot = Scatter()
     plot.add(problem.pareto_front(), plot_type="line", color="black", alpha=0.7)
