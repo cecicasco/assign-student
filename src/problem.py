@@ -6,8 +6,6 @@ from random import randrange
 from pymoo.core.repair import Repair
 from objetivefunctions import f1,f2,f3
 
-#Initialize
-data.init()
 
 class ADEEProblem(ElementwiseProblem):
 

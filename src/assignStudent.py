@@ -10,11 +10,14 @@ from multiprocessing import Process, Manager
 from problem import ADEEProblem,AEEEFeacible,generate_ind
 import datadb as data
 import psycopg2
+import sys
+
+#Initialize
+data.init(grade_input=sys.argv[1], iteration_input=sys.argv[2])
 
 if __name__ == '__main__':
     mananger = Manager()
     q = mananger.Queue()
-
     
     #Init population on 10 group
     process=[]
@@ -72,7 +75,7 @@ if __name__ == '__main__':
     print('Time:', res.exec_time)
 
     # Class
-    conn = psycopg2.connect("host=" + data.HOST + ", dbname=postgres user=postgres password=postgres port=5432")
+    conn = psycopg2.connect("host=" + data.HOST + ", dbname=" + data.DATABASE + " user=postgres password=" + data.PASS + " port=5432")
     cur = conn.cursor()
     sql = "insert into tesis.resultados_py (fo1, fo2, fo3, grado, iteracion) values (%s,%s,%s,%s,%s)"
 

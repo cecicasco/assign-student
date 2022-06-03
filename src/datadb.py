@@ -2,15 +2,20 @@
 import psycopg2
 
 
-def init():
-    global  C, P, E, CLASS_SIZE, PERSON_SIZE, ESTABLISMENT_SIZE, N_OBJ, N_CONSTR, HOST, GRADE, ITERATION
-    GRADE = 1
-    ITERATION = 1
+def init(grade_input, iteration_input):
+    global  C, P, E, CLASS_SIZE, PERSON_SIZE, ESTABLISMENT_SIZE, N_OBJ, N_CONSTR, HOST, GRADE, ITERATION, DATABASE, PASS
+    GRADE = grade_input
+    ITERATION = iteration_input
 
-    HOST = '192.168.0.110'
+    print(grade_input)
+    print(iteration_input)
+
+    HOST = '143.255.142.228'
+    DATABASE = 'tesis_ceci'
+    PASS = 'tita92'
 
     # Class
-    conn = psycopg2.connect("host=" + HOST +", dbname=postgres user=postgres password=postgres port=5432")
+    conn = psycopg2.connect("host=" + HOST +", dbname="+DATABASE+" user=postgres password="+PASS+" port=5432")
     cur = conn.cursor()
 
     C = []
