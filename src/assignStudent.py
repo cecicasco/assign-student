@@ -77,7 +77,7 @@ if __name__ == '__main__':
     # Class
     conn = psycopg2.connect("host=" + data.HOST + ", dbname=" + data.DATABASE + " user=postgres password=" + data.PASS + " port=5432")
     cur = conn.cursor()
-    sql = "insert into tesis.resultados_py (fo1, fo2, fo3, grado, iteracion) values (%s,%s,%s,%s,%s)"
+    sql = "insert into tesis_prd.resultados_py (fo1, fo2, fo3, grado, iteracion) values (%s,%s,%s,%s,%s)"
 
 
     print("Best solution found: {0}'".format(res.X) )
