@@ -36,6 +36,12 @@ if __name__ == '__main__':
         f2m = row[1]
         f3m = row[2]
 
+    cur.execute("select fo1, fo2, fo3 from tesis_prd.resultados_py where grado = " + str(GRADE))
+    for row in cur:
+        f1a2 = row[0]
+        f2a2 = row[1]
+        f3a2 = row[2]
+        P.add((f1a2, f2a2, f3a2, "X", 10))
 
     cur.execute("select avg(fo1), avg(fo2), avg(fo3) from tesis_prd.resultados_py where grado = " + str(GRADE))
 
