@@ -37,6 +37,10 @@ if __name__ == '__main__':
         f3m = row[2]
 
     cur.execute("select fo1, fo2, fo3 from tesis_prd.resultados_py where grado = " + str(GRADE))
+
+    P = set()
+
+
     for row in cur:
         f1a2 = row[0]
         f2a2 = row[1]
@@ -50,7 +54,7 @@ if __name__ == '__main__':
         f2a = row[1]
         f3a = row[2]
 
-    P = set()
+
 
     # P.add((0,1,2,"Óptimo Teórico",10))
     P.add((f1a, f2a, f3a, "X", 10))

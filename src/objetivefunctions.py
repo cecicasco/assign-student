@@ -7,10 +7,14 @@ def f1(X):
     result=0
     for i in range(len(data.C)):
         count_student_assigned = 0
+
         for j in range(len(X)):
             if i==X[j]:
                 count_student_assigned=count_student_assigned+1
-        result=result+(count_student_assigned/data.C[i][5])
+
+        distance = abs(30-count_student_assigned)
+
+        result=result+distance
 
     result=result/data.CLASS_SIZE
     round(result, 6)
