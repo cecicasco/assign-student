@@ -11,7 +11,7 @@ class ADEEProblem(ElementwiseProblem):
 
     def __init__(self, **kwargs):
         super().__init__(n_var=data.PERSON_SIZE, n_obj=data.N_OBJ,
-                         n_constr=data.N_CONSTR, xl=0, xu=data.CLASS_SIZE-1, type_var=int,**kwargs)
+                         n_constr=0, xl=0, xu=data.CLASS_SIZE-1, type_var=int,**kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
         e=[f1(x), f2(x), f3(x)*-1]
