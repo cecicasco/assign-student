@@ -39,21 +39,48 @@ if __name__ == '__main__':
     cur.execute("select fo1, fo2, fo3 from tesis_prd.resultados_py where grado = " + str(GRADE))
 
     P = set()
+    # Non-dominated solutions
+    ND = set()
+    # Search Non-dominated Solutions
 
 
     for row in cur:
-        f1a2 = row[0]
-        f2a2 = row[1]
-        f3a2 = row[2]
-        P.add((f1a2, f2a2, f3a2, "X", 10))
+       f1a2 = row[0]
+       f2a2 = row[1]
+       f3a2 = row[2]
+       P.add((f1a2, f2a2, f3a2, "X", 10))
 
-    cur.execute("select avg(fo1), avg(fo2), avg(fo3) from tesis_prd.resultados_py where grado = " + str(GRADE))
 
-    for row in cur:
-        f1a = row[0]
-        f2a = row[1]
-        f3a = row[2]
+    for i1 in P:
+        isNonDominated = True
+        c = 0
+        for i2 in P:
+            if i1 != i2:
+                if i1[0] >= i2[0] and i1[1] >= i2[1] and i1[2] <= i2[2]:  # Min f1, Min f2, Max f3
+                    if i1[0] > i2[0] or i1[1] > i2[1] or i1[2] < i2[2]:
+                        c = c + 1
+        if c == 0:
+            ND.add(i1)
 
+    P = ND
+
+    f1a = 0
+    for i1 in P:
+        f1a = f1a + i1[0]
+
+    f1a = f1a / len(P)
+
+    f2a = 0
+    for i1 in P:
+        f2a = f2a + i1[1]
+
+    f2a = f2a / len(P)
+
+    f3a = 0
+    for i1 in P:
+        f3a = f3a + i1[2]
+
+    f3a = f3a / len(P)
 
 
     # P.add((0,1,2,"Óptimo Teórico",10))
