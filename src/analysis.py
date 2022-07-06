@@ -48,7 +48,7 @@ if __name__ == '__main__':
        f1a2 = row[0]
        f2a2 = row[1]
        f3a2 = row[2]
-       P.add((f1a2, f2a2, f3a2, "X", 10))
+       P.add((f1a2, f2a2, f3a2, "Conjunto Pareto", 5))
 
 
     for i1 in P:
