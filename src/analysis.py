@@ -48,7 +48,7 @@ if __name__ == '__main__':
        f1a2 = row[0]
        f2a2 = row[1]
        f3a2 = row[2]
-       P.add((f1a2, f2a2, f3a2, "X", 10))
+       P.add((f1a2, f2a2, f3a2, "Conjunto Pareto", 10))
 
 
     for i1 in P:
@@ -84,7 +84,7 @@ if __name__ == '__main__':
 
 
     # P.add((0,1,2,"Óptimo Teórico",10))
-    P.add((f1a, f2a, f3a, "X", 10))
+    P.add((f1a, f2a, f3a, "ND", 10))
     P.add((f1m, f2m, f3m, "X MEC", 10))
 
     print("ND: " + str(len(P)))

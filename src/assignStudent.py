@@ -50,7 +50,7 @@ if __name__ == '__main__':
     problem = ADEEProblem(runner=pool.starmap, func_eval=starmap_parallelized_eval)
 
     # Configure NSGA2 
-    algorithm = NSGA2(pop_size=100,sampling=get_sampling('int_random'),
+    algorithm = NSGA2(pop_size=200,sampling=get_sampling('int_random'),
                 crossover=get_crossover("int_exp"),
                 mutation=get_mutation("int_pm"),
                 repair=AEEEFeacible(),
@@ -59,7 +59,7 @@ if __name__ == '__main__':
     #Optimize
     res = minimize(problem,
                 algorithm,
-                ('n_gen', 100),
+                ('n_gen', 200),
                 seed=1,
                 verbose=True)
 
