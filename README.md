@@ -15,4 +15,4 @@ To configure the data set used, perform the following tasks:
   * run the script.sql file
 
 # Run the algorithm
-py assignTeacher.py
+py assign-student.py
