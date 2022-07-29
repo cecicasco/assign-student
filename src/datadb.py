@@ -10,9 +10,9 @@ def init(grade_input, iteration_input):
     print(grade_input)
     print(iteration_input)
 
-    HOST = '143.255.142.228'
-    DATABASE = 'tesis_ceci'
-    PASS = 'tita92'
+    HOST = 'localhost'
+    DATABASE = 'tfmdb'
+    PASS = 'Tfm123456'
 
     # Class
     conn = psycopg2.connect("host=" + HOST +", dbname="+DATABASE+" user=postgres password="+PASS+" port=5432")
