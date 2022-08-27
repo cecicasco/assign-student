@@ -14,7 +14,7 @@ class ADEEProblem(ElementwiseProblem):
                          n_constr=0, xl=0, xu=data.CLASS_SIZE-1, type_var=int,**kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
-        e=[f1(x), f2(x), f3(x)*-1]
+       e=[f1(x), f2(x), f3(x)*-1, f4(x), f5(x)]
         print(e)
         out["F"] = e #For minimization context, with multiply *-1
         out["G"] = validateConstraints(x)
