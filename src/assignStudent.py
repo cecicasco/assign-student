@@ -50,7 +50,7 @@ if __name__ == '__main__':
     problem = ADEEProblem(runner=pool.starmap, func_eval=starmap_parallelized_eval)
 
     # Configure NSGA2 
-    algorithm = NSGA2(pop_size=200,sampling=get_sampling('int_random'),
+    algorithm = NSGA2(pop_size=100,sampling=get_sampling('int_random'),
                 crossover=get_crossover("int_exp"),
                 mutation=get_mutation("int_pm"),
                 repair=AEEEFeacible(),
@@ -59,7 +59,7 @@ if __name__ == '__main__':
     #Optimize
     res = minimize(problem,
                 algorithm,
-                ('n_gen', 200),
+                ('n_gen', 50),
                 seed=1,
                 verbose=True)
 
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     # Class
     conn = psycopg2.connect("host=" + data.HOST + ", dbname=" + data.DATABASE + " user=postgres password=" + data.PASS + " port=5432")
     cur = conn.cursor()
-    sql = "insert into tesis_prd.resultados_py (fo1, fo2, fo3, grado, iteracion) values (%s,%s,%s,%s,%s)"
+    sql = "insert into tesis_prd.resultados_py (fo1, fo2, fo3, fo4, fo5, grado, iteracion) values (%s,%s,%s,%s,%s,%s,%s)"
 
 
     print("Best solution found: {0}'".format(res.X) )
@@ -85,7 +85,7 @@ if __name__ == '__main__':
     print("Constraint violation: {0}'" .format(res.CV))
 
     for i in res.F:
-        cur.execute(sql, (i[0], i[1],i[2], data.GRADE, data.ITERATION))
+        cur.execute(sql, (i[0], i[1],i[2],i[3],i[4], data.GRADE, data.ITERATION))
         conn.commit()
 
 
